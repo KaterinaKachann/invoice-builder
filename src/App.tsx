@@ -3,8 +3,7 @@ import "./App.scss";
 import moon from "./assets/icon/icon-moon.svg";
 
 function App() {
- let dateNow = new Date().toISOString().split('T')[0]
-
+  let dateNow = new Date().toISOString().split("T")[0];
 
   return (
     <main className="container">
@@ -47,8 +46,61 @@ function App() {
                   type="date"
                   required
                   title="Click to change date"
-                 value={dateNow}
+                  value={dateNow}
                 />
+              </div>
+              <div className="invoice-table">
+                <table>
+                  <tr>
+                    <th>Item</th>
+                    <th>Hours</th>
+                    <th>Rate</th>
+                    <th>Subtotal</th>
+                  </tr>
+                  <tr>
+                    <th>
+                      <div className="invoice-input__text">
+                        <input
+                          type="text"
+                          required
+                          title="Click to change number"
+                          value="Set up ads"
+                        />
+                      </div>
+                    </th>
+                    <th>
+                    <div className="invoice-input__text">
+                        <input
+                          type="text"
+                          required
+                          title="Click to change number"
+                          value="3h"
+                        />
+                      </div>
+                    </th>
+                    <th>
+                    <div className="invoice-input__text">
+                        <input
+                          type="text"
+                          required
+                          title="Click to change number"
+                          value="10$"
+                        />
+                      </div>
+                    </th>
+                    <th>
+                    <div className="invoice-input__text">
+                        <input
+                          type="text"
+                          required
+                          title="Click to change number"
+                          value="30$"
+                        />
+                      </div>
+                    </th>
+                  </tr>
+                </table>
+                <button>Add New Invoice Item</button>
               </div>
             </div>
           </div>
