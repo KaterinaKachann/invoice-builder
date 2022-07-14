@@ -92,7 +92,11 @@
             flex-wrap: wrap;
           }
           .invoice-table {
-           margin: 0 auto;
+            margin: 0 auto;
+            .btn-delete {
+              width: 100%;
+              margin-bottom: 10px;
+            }
             button {
               padding: 10px 40px;
               font-size: 16px;
