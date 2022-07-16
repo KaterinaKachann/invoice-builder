@@ -93,11 +93,21 @@
           }
           .invoice-table {
             margin: 0 auto;
+            .btn-remove {
+              width: 100%;
+              background-color: transparent;
+              cursor: pointer;
+              img {
+                width: 16px;
+                height: 16px;
+                margin-bottom: 10px;
+              }
+            }
             .btn-delete {
               width: 100%;
               margin-bottom: 10px;
             }
-            button {
+            .button-style {
               padding: 10px 40px;
               font-size: 16px;
               border: 2px solid #a7acba;
@@ -106,6 +116,7 @@
               width: 100%;
               border-radius: 0.2rem;
               transition: 0.3s ease;
+              margin-bottom: 10px;
               &:hover {
                 background: #c1c1c3;
               }
