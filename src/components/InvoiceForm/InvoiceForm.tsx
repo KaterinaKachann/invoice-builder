@@ -16,7 +16,7 @@ interface InvoiceTableValues {
   item: string;
   hours: string;
   rate: string;
-  subtotal: string;
+  subtotal: number | string;
 }
 
 function InvoiceItem() {
@@ -60,6 +60,7 @@ function InvoiceItem() {
   function submitInvoiceItem(data: any) {
     console.log(JSON.stringify(tableFields));
     console.log(JSON.stringify(data))
+
   }
 
   const { register, handleSubmit } = useForm();
@@ -157,7 +158,8 @@ function InvoiceItem() {
                           <input
                             type="text"
                             required
-                            value={data.subtotal || ""}
+                            readOnly
+                            value={data.subtotal = (parseInt(data.rate) * parseInt(data.hours)) || "" }
                             title="Click to change number"
                             placeholder="30$"
                             name="subtotal"
