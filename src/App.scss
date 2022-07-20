@@ -60,6 +60,7 @@
         padding: 1rem 2rem;
         .invoice-input__file {
           margin-bottom: 1rem;
+
           .invoice-label {
             display: flex;
             flex-direction: row;
@@ -81,6 +82,10 @@
                 opacity: 0;
               }
             }
+          }
+          img{
+            width: 100px;
+            height: 100px;
           }
         }
         .invoice-info {
