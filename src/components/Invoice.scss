@@ -1,0 +1,112 @@
+.invoice-wrapper__form-card {
+  border-radius: 1rem;
+  border: 1px solid rgb(70 96 187 / 20%);
+  background: rgb(246, 248, 255);
+  padding: 1rem 2rem;
+  @media (max-width: 1024px) {
+    width: 100%;
+  }
+  .invoice-title__from {
+    margin-bottom: 1rem;
+  }
+  .invoice-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 0.2rem;
+    @media (max-width: 1440px) {
+      flex-wrap: wrap;
+    }
+    form {
+      width: 100%;
+      .invoice-input__text,
+      .invoice-input__date {
+        margin-bottom: 1rem;
+        width: 100%;
+        label {
+          color: #7d8592;
+          font-size: 1rem;
+          line-height: 1;
+          margin-bottom: 4px;
+          display: block;
+        }
+        .customField {
+          border: 1px solid #dbdff3;
+          margin-top: 1px;
+          border-radius: 3px;
+          color: #333;
+          box-shadow: none;
+          outline: none;
+          width: 100%;
+          padding: 0.5rem;
+        }
+        .errorMsg {
+          border: 1px solid #f01515;
+          margin-top: 1px;
+          border-radius: 3px;
+          color: #f01515;
+          box-shadow: none;
+          outline: none;
+          width: 100%;
+          padding: 0.5rem;
+        }
+        .errorBar {
+          font-size: 0.8rem;
+          color: #f01515;
+        }
+      }
+      .invoice-table {
+        margin: 0 auto;
+        .btn-remove {
+          width: 100%;
+          background-color: transparent;
+          cursor: pointer;
+          img {
+            width: 16px;
+            height: 16px;
+            margin-bottom: 10px;
+          }
+        }
+        .btn-delete {
+          width: 100%;
+          margin-bottom: 10px;
+        }
+        .button-style {
+          padding: 10px 40px;
+          font-size: 16px;
+          border: 2px solid #a7acba;
+          background: #e0e0e5;
+          cursor: pointer;
+          width: 100%;
+          border-radius: 0.2rem;
+          transition: 0.3s ease;
+          margin-bottom: 10px;
+          &:hover {
+            background: #c1c1c3;
+          }
+          &:active {
+            background: #b0b1b8;
+          }
+        }
+      }
+      .invoice-button__submit {
+        button {
+          padding: 10px 40px;
+          font-size: 16px;
+          background: #285cff;
+          color: #fff;
+          cursor: pointer;
+          width: 100%;
+          border-radius: 0.2rem;
+          transition: 0.3s ease;
+          &:hover {
+            background: #374778;
+          }
+          &:active {
+            background: #285cff;
+          }
+        }
+      }
+    }
+  }
+}
