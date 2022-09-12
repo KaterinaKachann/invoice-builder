@@ -55,6 +55,22 @@
           color: #f01515;
         }
       }
+      .invoice-input__total{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin-bottom: 1rem;
+        .customFieldTotal{
+          border: none;
+          margin-top: 1px;
+          border-radius: 3px;
+          background-color: transparent;
+          text-align: right;
+          color: #333;
+          padding: 0.5rem;
+          width: 100%;
+        }
+      }
       .invoice-table {
         margin: 0 auto;
         .btn-remove {

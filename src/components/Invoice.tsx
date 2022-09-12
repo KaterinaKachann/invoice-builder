@@ -1,53 +1,94 @@
-import React, { useState } from "react";
-import { useFieldArray, useForm } from "react-hook-form";
+import React, { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
 import "./Invoice.scss";
 import closeIcon from "../assets/icon/icon-close.svg";
+
 type FormItem = {
-  ItemSet: string;
-  ItemHour: number;
-  ItemRate: number;
-  ItemSubtotal: number;
+  itemSet: string;
+  itemHour: string;
+  itemRate: string;
+  itemSubtotal: number;
 };
 type FormData = {
-  InvoiceNumber: number;
-  InvoiceDate: Date;
-  InvoiceDue: Date;
-  InvoiceItems: Array<FormItem>;
+  invoiceNumber: number;
+  invoiceDate: Date;
+  invoiceDue: Date;
+  invoiceItems: Array<FormItem>;
+  invoiceTotal: number;
 };
+
 function Invoice() {
   const {
     register,
+    reset,
     formState: { errors },
     handleSubmit,
-    control,
   } = useForm<FormData>({
     mode: "all",
   });
 
-  const { fields, append, remove, prepend } = useFieldArray({
-    control,
-    name: "InvoiceItems",
-  });
-
   const handleSubmitForm = (data: any) => {
     console.log(data);
+    console.log(itemField);
+    console.log(total);
+    reset();
   };
 
   let dateNow = new Date().toISOString().split("T")[0];
 
-  const [tableFields, setTableFields] = useState([
-    { item: "", hours: "", rate: "", subtotal: "" },
+  let [itemField, setItemField] = useState<FormItem[]>([
+    {
+      itemSet: "",
+      itemHour: "",
+      itemRate: "",
+      itemSubtotal: 0,
+    },
   ]);
 
-  const handleChange = (
-    index: number,
-    event: React.ChangeEvent<HTMLInputElement>
+  let [total, setTotal] = useState(0);
+
+
+  let handleChange = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    index: number
   ) => {
-    const { name, value } = event.target;
-    const list: any = [...tableFields];
+    const { name, value } = e.target;
+    const list: any = [...itemField];
     list[index][name] = value;
-    setTableFields(list);
+    setItemField(list);
   };
+
+  let removeTableItem = (index: number) => {
+    const rows = [...itemField];
+    rows.splice(index, 1);
+    setItemField(rows);
+    setTotal(total - itemField[index].itemSubtotal)
+  };
+
+  let addTableItem = () => {
+    setItemField([
+      ...itemField,
+      {
+        itemSet: "",
+        itemHour: "",
+        itemRate: "",
+        itemSubtotal: 0,
+      },
+    ]);
+    setTotal(itemField.reduce(
+      (n, { itemSubtotal }) => n + itemSubtotal,
+      0
+    ))
+  };
+  
+  useEffect (() => {
+    setTotal(itemField.reduce(
+      (n, { itemSubtotal }) => n + itemSubtotal,
+      0
+    ))
+  })
+  
+
   return (
     <div className="invoice-wrapper__form-card">
       <h3 className="invoice-title__from">Invoice info</h3>
@@ -59,7 +100,7 @@ function Invoice() {
               type="text"
               title="Click to change number"
               placeholder="001"
-              {...register("InvoiceNumber", {
+              {...register("invoiceNumber", {
                 required: { value: true, message: "Fieled is empty" },
                 minLength: {
                   value: 3,
@@ -70,10 +111,10 @@ function Invoice() {
                   message: "Please enter a number",
                 },
               })}
-              className={errors.InvoiceNumber ? "errorMsg" : "customField"}
+              className={errors.invoiceNumber ? "errorMsg" : "customField"}
             />
-            {errors.InvoiceNumber ? (
-              <span className="errorBar">{errors.InvoiceNumber.message}</span>
+            {errors.invoiceNumber ? (
+              <span className="errorBar">{errors.invoiceNumber.message}</span>
             ) : (
               <span className="bar"></span>
             )}
@@ -84,13 +125,13 @@ function Invoice() {
               type="date"
               title="Click to change date"
               placeholder={dateNow}
-              {...register("InvoiceDate", {
+              {...register("invoiceDate", {
                 required: { value: true, message: "Fieled is empty" },
               })}
-              className={errors.InvoiceNumber ? "errorMsg" : "customField"}
+              className={errors.invoiceNumber ? "errorMsg" : "customField"}
             />
-            {errors.InvoiceDate ? (
-              <span className="errorBar">{errors.InvoiceDate.message}</span>
+            {errors.invoiceDate ? (
+              <span className="errorBar">{errors.invoiceDate.message}</span>
             ) : (
               <span className="bar"></span>
             )}
@@ -101,20 +142,20 @@ function Invoice() {
               type="date"
               title="Click to change date"
               placeholder={dateNow}
-              {...register("InvoiceDue", {
+              {...register("invoiceDue", {
                 required: { value: true, message: "Fieled is empty" },
               })}
-              className={errors.InvoiceNumber ? "errorMsg" : "customField"}
+              className={errors.invoiceNumber ? "errorMsg" : "customField"}
             />
-            {errors.InvoiceDue ? (
-              <span className="errorBar">{errors.InvoiceDue.message}</span>
+            {errors.invoiceDue ? (
+              <span className="errorBar">{errors.invoiceDue.message}</span>
             ) : (
               <span className="bar"></span>
             )}
           </div>
 
           <div className="invoice-table">
-            {fields.length == 0 ? (
+            {itemField.length == 0 ? (
               <></>
             ) : (
               <table>
@@ -127,17 +168,19 @@ function Invoice() {
                   </tr>
                 </thead>
                 <tbody>
-                  {fields.map((field, index) => {
+                  {itemField.map((data, index) => {
                     return (
-                      <tr key={field.id}>
+                      <tr key={index}>
                         <td>
                           <div className="invoice-input__text">
                             <input
                               type="text"
                               title="Click to change number"
                               placeholder="Set up ads"
-                              {...register(`InvoiceItems.${index}.ItemSet`)}
                               className="customField"
+                              name="itemSet"
+                              value={data.itemSet}
+                              onChange={(event) => handleChange(event, index)}
                             />
                           </div>
                         </td>
@@ -147,8 +190,10 @@ function Invoice() {
                               type="text"
                               title="Click to change number"
                               placeholder="3h"
-                              {...register(`InvoiceItems.${index}.ItemHour`)}
                               className="customField"
+                              name="itemHour"
+                              value={data.itemHour || ""}
+                              onChange={(event) => handleChange(event, index)}
                             />
                           </div>
                         </td>
@@ -158,33 +203,36 @@ function Invoice() {
                               type="text"
                               title="Click to change number"
                               placeholder="10$"
-                              {...register(`InvoiceItems.${index}.ItemRate`)}
                               className="customField"
+                              name="itemRate"
+                              value={data.itemRate || ""}
+                              onChange={(event) => handleChange(event, index)}
                             />
                           </div>
                         </td>
+
                         <td>
                           <div className="invoice-input__text">
                             <input
                               type="text"
-                              readOnly
                               title="Click to change number"
-                              placeholder="30$"
-                              {...register(
-                                `InvoiceItems.${index}.ItemSubtotal`
-                              )}
+                              placeholder="10$"
+                              readOnly
+                              name="itemSubtotal"
                               value={
-                                (field.ItemSubtotal =
-                                  +field.ItemHour * +field.ItemRate || 0)
+                                (data.itemSubtotal =
+                                  parseInt(data.itemHour) *
+                                    parseInt(data.itemRate) || 0)
                               }
                               className="customField"
                             />
                           </div>
                         </td>
-                        {fields.length >= 2 ? (
+
+                        {itemField.length >= 2 ? (
                           <td>
                             <button
-                              onClick={() => remove(index)}
+                              onClick={() => removeTableItem(index)}
                               className="btn-remove"
                             >
                               <img src={closeIcon} />
@@ -199,16 +247,22 @@ function Invoice() {
                 </tbody>
               </table>
             )}
+            <div className="invoice-input__total">
+              <label>Total:</label>
+              <input
+                type="text"
+                title="Click to change number"
+                readOnly
+                placeholder="0"
+                name="itemTotal"
+                className="customFieldTotal"
+                value={(total || 0)}
+              />
+            </div>
             <button
               className="button-style"
-              onClick={() =>
-                append({
-                  ItemSet: "",
-                  ItemHour: undefined,
-                  ItemRate: undefined,
-                  ItemSubtotal: undefined,
-                })
-              }
+              type="button"
+              onClick={addTableItem}
             >
               Add Element
             </button>
