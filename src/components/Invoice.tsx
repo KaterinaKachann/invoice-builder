@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { set, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import "./Invoice.scss";
 import closeIcon from "../assets/icon/icon-close.svg";
 
@@ -27,11 +27,7 @@ function Invoice() {
     mode: "all",
   });
 
-  const handleSubmitForm = (data: any) => {
-    console.log(data);
-
-    console.log(itemField);
-    console.log(total);
+  const handleSubmitForm = (data: object) => {
     setItemField([]);
     setTotal(0);
     reset();

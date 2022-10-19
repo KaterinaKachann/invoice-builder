@@ -72,9 +72,6 @@ const generateConfig: WebpackConfigurationGenerator = (env, argv) => {
       }),
     ],
     devServer: {
-      static: {
-        directory: path.join(__dirname, "./src/assets"),
-      },
       port: 3000,
       compress: true,
       open: true,
