@@ -3,223 +3,111 @@
   @media (max-width: 1024px) {
     padding: 2rem 3rem;
   }
-  .wrapper{
+  .wrapper {
     width: 100%;
     max-width: 740px;
     margin: 0 auto;
     min-height: 100vh;
     padding: 3.1rem 7rem;
-  .header-wrapper {
-    display: flex;
-    -webkit-box-align: center;
-    align-items: center;
-    -webkit-box-pack: justify;
-    justify-content: space-between;
-    .header-btn {
+    .header-wrapper {
       display: flex;
       -webkit-box-align: center;
       align-items: center;
-      border: none;
-      background: none;
-      font-weight: bold;
-      font-size: 1.6rem;
-      line-height: 1.9rem;
-      letter-spacing: 0.25rem;
-      color: rgb(75, 106, 155);
-      cursor: pointer;
+      -webkit-box-pack: justify;
+      justify-content: space-between;
+      .header-btn {
+        display: flex;
+        -webkit-box-align: center;
+        align-items: center;
+        border: none;
+        background: none;
+        font-weight: bold;
+        font-size: 1.6rem;
+        line-height: 1.9rem;
+        letter-spacing: 0.25rem;
+        color: rgb(75, 106, 155);
+        cursor: pointer;
+      }
     }
-  }
-  .invoice-wrapper {
-
-    .invoice-wrapper__form {
-      padding: 3rem 2.4rem;
-      background: rgb(254, 254, 254);
-      width: 100%;
-      border-radius: 1.5rem;
-      margin-top: 1.6rem;
-      box-shadow: rgb(70 96 187 / 20%) 0px 16px 30px -10px;
-      display: flex;
-      flex-direction: column;
-      gap: 2rem;
-      @media (max-width: 1024px) {
+    .invoice-wrapper {
+      .invoice-wrapper__form {
+        padding: 3rem 2.4rem;
+        background: rgb(254, 254, 254);
         width: 100%;
-      }
-      .invoice-title__from {
-        margin-bottom: 1rem;
-      }
-      .invoice-wrapper__form-card {
-        border-radius: 1rem;
-        border: 1px solid rgb(70 96 187 / 20%);
-        background: rgb(246, 248, 255);
-        padding: 1rem 2rem;
-        width: 100%;
-
-        .invoice-input__file {
-          margin-bottom: 1rem;
-
-          .invoice-label {
-            display: flex;
-            flex-direction: row;
-            .invoice-btn__logo {
-              padding: 0;
-              font-size: 1rem;
-              float: none;
-              color: #888;
-              text-decoration: underline;
-              &:hover {
-                background-color: rgb(70 96 187 / 20%);
-              }
-              #fileupload {
-                width: 100%;
-                height: 100%;
-                display: none;
-                top: 0;
-                left: 0;
-                opacity: 0;
-              }
-            }
-          }
-          img{
-            width: 100px;
-            height: 100px;
-          }
+        border-radius: 1.5rem;
+        margin-top: 1.6rem;
+        box-shadow: rgb(70 96 187 / 20%) 0px 16px 30px -10px;
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        @media (max-width: 1024px) {
+          width: 100%;
         }
-        .invoice-info {
+        .invoice-title__wrapper {
           display: flex;
           flex-direction: row;
           justify-content: space-between;
-          gap: 0.2rem;
-          form{
-            width: 100%;
+          .invoice-title__from {
+            margin-bottom: 1rem;
           }
-          @media (max-width: 1440px) {
-            flex-wrap: wrap;
+          .invoice-title__btn {
+            width: 25px;
+            height: 25px;
+            cursor: pointer;
+            background: rgb(254, 254, 254);
+            border: 1px solid rgb(70 96 187 / 20%);
+            border-radius: 50%;
+            transition: 0.3s ease;
           }
-          .invoice-table {
-            margin: 0 auto;
-            .btn-remove {
-              width: 100%;
-              background-color: transparent;
-              cursor: pointer;
-              img {
-                width: 16px;
-                height: 16px;
-                margin-bottom: 10px;
-              }
-            }
-            .btn-delete {
-              width: 100%;
-              margin-bottom: 10px;
-            }
-            .button-style {
-              padding: 10px 40px;
-              font-size: 16px;
-              border: 2px solid #a7acba;
-              background: #e0e0e5;
-              cursor: pointer;
-              width: 100%;
-              border-radius: 0.2rem;
-              transition: 0.3s ease;
-              margin-bottom: 10px;
-              &:hover {
-                background: #c1c1c3;
-              }
-              &:active {
-                background: #b0b1b8;
-              }
-            }
+          .invoice-title__btn:hover {
+            background: rgb(246, 248, 255);
+          }
+          .invoice-title__btn:active {
+            background: rgb(254, 254, 254);
           }
         }
-      //   .invoice-input__text,
-      //   .invoice-input__date {
-      //     margin-bottom: 1rem;
-      //     width: 100%;
-      //     label {
-      //       color: #7d8592;
-      //       font-size: 1rem;
-      //       line-height: 1;
-      //       margin-bottom: 4px;
-      //       display: block;
-      //     }
-      //     input[type="text"] {
-      //       border: 1px solid #dbdff3 !important;
-      //       margin-top: 1px;
-      //       border-radius: 3px;
-      //       color: #333;
-      //       box-shadow: none;
-      //       outline: none;
-      //       width: 100% !important;
-      //       padding: 0.5rem;
-      //     }
-      //     input[type="date"] {
-      //       border: 1px solid #dbdff3 !important;
-      //       margin-top: 1px;
-      //       border-radius: 3px;
-      //       color: #333;
-      //       box-shadow: none;
-      //       outline: none;
-      //       width: 100% !important;
-      //       padding: 0.5rem;
-      //     }
-      //   }
-
-      //   .invoice-button__submit {
-      //     button {
-      //       padding: 10px 40px;
-      //       font-size: 16px;
-      //       background: #285cff;
-      //       color: #fff;
-      //       cursor: pointer;
-      //       width: 100%;
-      //       border-radius: 0.2rem;
-      //       transition: 0.3s ease;
-      //       &:hover {
-      //         background: #374778;
-      //       }
-      //       &:active {
-      //         background: #285cff;
-      //       }
-      //     }
-        }
-        .invoice-memebers{
+        .invoice-memebers {
           display: flex;
-          justify-content: space-between;
+          flex-direction: row;
+          justify-content: space-around;
           gap: 10px;
+
           @media (max-width: 1024px) {
             flex-wrap: wrap;
           }
-          .invoice-item{
-            display: flex;
-            flex-direction: column;
-            justify-content: space-around;
+          .invoice-item {
+            border-radius: 1rem;
+            border: 1px solid rgb(70 96 187 / 20%);
+            background: rgb(246, 248, 255);
+            padding: 1rem 2rem;
+            width: 100%;
             cursor: pointer;
-            .invoice-wrapper__form-card-subtitle{
+            .invoice-wrapper__form-card-subtitle {
               display: flex;
               flex-direction: row;
               gap: 30px;
-              .invoice-wrapper__form-card-icon{
+              .invoice-wrapper__form-card-icon {
                 width: 20px;
                 height: 20px;
               }
             }
-          
-        }
+            // }
+          }
         }
       }
-    }
-    .invoice-wrapper__result {
-      padding: 3rem 2.4rem;
-      background: rgb(254, 254, 254);
-      width: 50%;
-      border-radius: 1.5rem;
-      margin-top: 1.6rem;
-      max-width: 73.3rem;
-      box-shadow: rgb(70 96 187 / 20%) 0px 16px 30px -10px;
-      display: flex;
-      @media (max-width: 1024px) {
-        width: 100%;
+      .invoice-wrapper__result {
+        padding: 3rem 2.4rem;
+        background: rgb(254, 254, 254);
+        width: 50%;
+        border-radius: 1.5rem;
+        margin-top: 1.6rem;
+        max-width: 73.3rem;
+        box-shadow: rgb(70 96 187 / 20%) 0px 16px 30px -10px;
+        display: flex;
+        @media (max-width: 1024px) {
+          width: 100%;
+        }
       }
     }
   }
-  // }
 }

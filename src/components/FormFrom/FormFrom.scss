@@ -1,0 +1,147 @@
+.modal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: auto;
+  .invoice-wrapper__form-card-modal {
+    border-radius: 1rem;
+    border: 1px solid rgb(70 96 187 / 20%);
+    background: rgb(246, 248, 255);
+    padding: 1rem 2rem;
+    width: 40%;
+    margin-top: 10%;
+    .invoice-input__file {
+      margin-bottom: 1rem;
+
+      .invoice-label {
+        display: flex;
+        flex-direction: row;
+        .invoice-btn__logo {
+          padding: 0;
+          font-size: 1rem;
+          float: none;
+          color: #888;
+          text-decoration: underline;
+          &:hover {
+            background-color: rgb(70 96 187 / 20%);
+          }
+          #fileupload {
+            width: 100%;
+            height: 100%;
+            display: none;
+            top: 0;
+            left: 0;
+            opacity: 0;
+          }
+        }
+      }
+      img {
+        width: 100px;
+        height: 100px;
+      }
+    }
+    .invoice-info {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      gap: 0.2rem;
+      form {
+        width: 100%;
+      }
+      @media (max-width: 1440px) {
+        flex-wrap: wrap;
+      }
+      .invoice-table {
+        margin: 0 auto;
+        .btn-remove {
+          width: 100%;
+          background-color: transparent;
+          cursor: pointer;
+          img {
+            width: 16px;
+            height: 16px;
+            margin-bottom: 10px;
+          }
+        }
+        .btn-delete {
+          width: 100%;
+          margin-bottom: 10px;
+        }
+        .button-style {
+          padding: 10px 40px;
+          font-size: 16px;
+          border: 2px solid #a7acba;
+          background: #e0e0e5;
+          cursor: pointer;
+          width: 100%;
+          border-radius: 0.2rem;
+          transition: 0.3s ease;
+          margin-bottom: 10px;
+          &:hover {
+            background: #c1c1c3;
+          }
+          &:active {
+            background: #b0b1b8;
+          }
+        }
+      }
+    }
+    .invoice-input__text,
+    .invoice-input__date {
+      margin-bottom: 1rem;
+      width: 100%;
+      label {
+        color: #7d8592;
+        font-size: 1rem;
+        line-height: 1;
+        margin-bottom: 4px;
+        display: block;
+      }
+      input[type="text"] {
+        border: 1px solid #dbdff3 !important;
+        margin-top: 1px;
+        border-radius: 3px;
+        color: #333;
+        box-shadow: none;
+        outline: none;
+        width: 100% !important;
+        padding: 0.5rem;
+      }
+      input[type="date"] {
+        border: 1px solid #dbdff3 !important;
+        margin-top: 1px;
+        border-radius: 3px;
+        color: #333;
+        box-shadow: none;
+        outline: none;
+        width: 100% !important;
+        padding: 0.5rem;
+      }
+    }
+
+    .invoice-button__submit {
+      button {
+        padding: 10px 40px;
+        font-size: 16px;
+        background: #285cff;
+        color: #fff;
+        cursor: pointer;
+        width: 100%;
+        border-radius: 0.2rem;
+        transition: 0.3s ease;
+        &:hover {
+          background: #374778;
+        }
+        &:active {
+          background: #285cff;
+        }
+      }
+    }
+  }
+}
