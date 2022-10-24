@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import "../../App.scss";
-import './FormFrom.scss';
+import "./FormFrom.scss";
 
-function FormFrom(props) {
+function FormFrom({ active, setActive }) {
   const [selectFile, setSelectFile] = useState<File | undefined>();
   const [previewFile, setPreviewFile] = useState<string | undefined>();
 
@@ -31,107 +31,121 @@ function FormFrom(props) {
     console.log(JSON.stringify(data));
   }
 
-  if(!props.showFrom){
-    return null
-  }
   return (
-    <div className="modal">
-    <div className="invoice-wrapper__form-card-modal">
-      <div className="invoice-title__wrapper">
-        <h3 className="invoice-title__from">From</h3>
-        <button className="invoice-title__btn" onClick={props.onClose}>x</button>
+    <div
+      className={active ? "modal active" : "modal none"}
+      onClick={() => setActive(false)}
+    >
+      <div
+        className={active ? "modal__content" : "modal__content active"}
+        onClick={(e) => e.stopPropagation()}
+      >
+        <div className="invoice-wrapper__form-card-modal">
+          <div className="invoice-wrapper__title-content">
+            <h3 className="invoice-title__from">From</h3>
+            <button
+              className="modal__content-btn"
+              onClick={() => setActive(false)}
+            >
+              х
+            </button>
+          </div>
+          <form onSubmit={handleSubmit(submitInvoiceFrom)}>
+            <div className="invoice-input__file">
+              {previewFile ? (
+                <img src={previewFile} />
+              ) : (
+                <label className="invoice-label">
+                  <div className="invoice-btn__logo">
+                    Select
+                    <input
+                      type="file"
+                      id="fileupload"
+                      onChange={onSelectFile}
+                    />
+                  </div>
+                  &nbsp;your logo
+                </label>
+              )}
+            </div>
+            <div className="invoice-input__text">
+              <label>Company/ Client Name</label>
+              <input
+                type="text"
+                autoComplete="off"
+                required
+                {...register("invoiceClientCompany", { required: true })}
+              />
+            </div>
+            <div className="invoice-input__text">
+              <label>Country</label>
+              <input
+                type="text"
+                autoComplete="off"
+                required
+                {...register("invoiceClinentCountry", { required: true })}
+              />
+            </div>
+            <div className="invoice-input__text">
+              <label>First Name</label>
+              <input
+                type="text"
+                autoComplete="off"
+                required
+                {...register("invoiceClientFirstName", { required: true })}
+              />
+            </div>
+            <div className="invoice-input__text">
+              <label>Last Name</label>
+              <input
+                type="text"
+                autoComplete="off"
+                required
+                {...register("invoiceClientLastName", { required: true })}
+              />
+            </div>
+            <div className="invoice-input__text">
+              <label>Tax registration number</label>
+              <input
+                type="text"
+                autoComplete="off"
+                required
+                {...register("invoiceClientTaxNumber", { required: true })}
+              />
+            </div>
+            <div className="invoice-input__text">
+              <label>Email</label>
+              <input
+                type="text"
+                autoComplete="off"
+                required
+                {...register("invoiceClientEmail", { required: true })}
+              />
+            </div>
+            <div className="invoice-input__text">
+              <label>Address</label>
+              <input
+                type="text"
+                autoComplete="off"
+                required
+                {...register("invoiceClientAddress", { required: true })}
+              />
+            </div>
+            <div className="invoice-input__text">
+              <label>Phone</label>
+              <input
+                type="text"
+                autoComplete="off"
+                required
+                {...register("invoiceClientPhone", { required: true })}
+              />
+            </div>
+            <div className="invoice-button__submit">
+              <button type="submit">Set Sender Details</button>
+            </div>
+          </form>
+        </div>
       </div>
-      <form onSubmit={handleSubmit(submitInvoiceFrom)}>
-        <div className="invoice-input__file">
-          {previewFile ? (
-            <img src={previewFile} />
-          ) : (
-            <label className="invoice-label">
-              <div className="invoice-btn__logo">
-                Select
-                <input type="file" id="fileupload" onChange={onSelectFile} />
-              </div>
-              &nbsp;your logo
-            </label>
-          )}
-        </div>
-        <div className="invoice-input__text">
-          <label>Company/ Client Name</label>
-          <input
-            type="text"
-            autoComplete="off"
-            required
-            {...register("invoiceClientCompany", { required: true })}
-          />
-        </div>
-        <div className="invoice-input__text">
-          <label>Country</label>
-          <input
-            type="text"
-            autoComplete="off"
-            required
-            {...register("invoiceClinentCountry", { required: true })}
-          />
-        </div>
-        <div className="invoice-input__text">
-          <label>First Name</label>
-          <input
-            type="text"
-            autoComplete="off"
-            required
-            {...register("invoiceClientFirstName", { required: true })}
-          />
-        </div>
-        <div className="invoice-input__text">
-          <label>Last Name</label>
-          <input
-            type="text"
-            autoComplete="off"
-            required
-            {...register("invoiceClientLastName", { required: true })}
-          />
-        </div>
-        <div className="invoice-input__text">
-          <label>Tax registration number</label>
-          <input
-            type="text"
-            autoComplete="off"
-            required
-            {...register("invoiceClientTaxNumber", { required: true })}
-          />
-        </div>
-        <div className="invoice-input__text">
-          <label>Email</label>
-          <input
-            type="text"
-            autoComplete="off"
-            required
-            {...register("invoiceClientEmail", { required: true })}
-          />
-        </div>
-        <div className="invoice-input__text">
-          <label>Address</label>
-          <input
-            type="text"
-            autoComplete="off"
-            required
-            {...register("invoiceClientAddress", { required: true })}
-          />
-        </div>
-        <div className="invoice-input__text">
-          <label>Phone</label>
-          <input
-            type="text"
-            autoComplete="off"
-            required
-            {...register("invoiceClientPhone", { required: true })}
-          />
-        </div>
-        <div className="invoice-button__submit">
-          <button type="submit">Set Sender Details</button>
-        </div>
-      </form>
-    </div>
     </div>
   );
 }
